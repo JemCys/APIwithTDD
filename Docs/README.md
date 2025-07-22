@@ -20,7 +20,7 @@ README_API_SpringBoot.pdf
 - `/docs`: Documentación del proyecto
 
 
-## 🛠Cómo ejecutar
+## Cómo ejecutar
 
 1. Clona el repositorio
 2. Ejecuta `mvn spring-boot:run`
