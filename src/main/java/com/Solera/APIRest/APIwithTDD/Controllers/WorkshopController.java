@@ -48,4 +48,16 @@ public class WorkshopController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<WorkshopClass> updateWorkshop(@PathVariable int id, @RequestBody WorkshopClass workshop) {
+        WorkshopClass existingWorkshop = serviceWorkshop.getWorkshopById(id);
+        if (existingWorkshop != null) {
+            workshop.setId((long) id);
+            WorkshopClass updatedWorkshop = serviceWorkshop.createWorkshop(workshop);
+            return ResponseEntity.ok(updatedWorkshop);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

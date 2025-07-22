@@ -1,5 +1,6 @@
 package com.Solera.APIRest.APIwithTDD.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,5 +21,14 @@ public class PartsClass {
 
     @ManyToOne
     @JoinColumn (name = "vehicle_id")
+    @JsonBackReference
     private VehiclesClass vehicle;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
 }

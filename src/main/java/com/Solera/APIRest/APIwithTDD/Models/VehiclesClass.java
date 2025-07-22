@@ -1,5 +1,7 @@
 package com.Solera.APIRest.APIwithTDD.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,9 +28,18 @@ public class VehiclesClass {
 
     @ManyToOne
     @JoinColumn (name = "workshop_id" )
+    @JsonBackReference
     private WorkshopClass workshop;
 
-    @OneToMany (mappedBy = "vehicle")
+    @OneToMany (mappedBy = "vehicle", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<PartsClass> parts;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
 }

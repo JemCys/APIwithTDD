@@ -2,6 +2,9 @@ package com.Solera.APIRest.APIwithTDD.Controllers;
 
 import com.Solera.APIRest.APIwithTDD.Contracts.IServiceParts;
 import com.Solera.APIRest.APIwithTDD.Models.PartsClass;
+import com.Solera.APIRest.APIwithTDD.Models.VehiclesClass;
+import com.Solera.APIRest.APIwithTDD.Models.WorkshopClass;
+import jakarta.servlet.http.Part;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +51,19 @@ public class PartsController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PartsClass> updatePart(@PathVariable int id, @RequestBody PartsClass part) {
+        PartsClass existingPart = serviceParts.getPartById(id);
+        if (existingPart != null) {
+            part.setId((long) id);
+            PartsClass updatedPart = serviceParts.createPart(part);
+            return ResponseEntity.ok(updatedPart);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 
 }
